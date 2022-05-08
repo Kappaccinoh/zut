@@ -1,13 +1,23 @@
 <div class="container">
     <h1>Zut</h1>
+    <!-- <p>Welcome <%= @current_user.username %></p> -->
     <h2>How to Play</h2>
     <p>TODO:</p>
 
     <hr>
 
     <h2>Users Online</h2>
-    <%= render @users %>
+    <%= turbo_stream_from "users" %>
+    <div id="users">
+        <%= render @users %>
+    </div>
 
     <h2>Rooms Available</h2>
-    <%= render @rooms %>
+    <%= turbo_stream_from "rooms" %>
+    <div id="rooms">
+        <%= render @rooms %>
+    </div>
+
+    <h3>Create A Room</h3>
+    <%= render partial: "layouts/new_room_form" %>
 </div>
