@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_08_070355) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_08_144724) do
+  create_table "groupparticipants", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_groupparticipants_on_room_id"
+    t.index ["user_id"], name: "index_groupparticipants_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "room_id", null: false
@@ -34,6 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_08_070355) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "groupparticipants", "rooms"
+  add_foreign_key "groupparticipants", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
 end
