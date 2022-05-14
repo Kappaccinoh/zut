@@ -1,6 +1,7 @@
 <div class="container vh-100 bg-dark">
     <% if @single_room %>
         <h1><%= @single_room.name %></h1>
+        <h2>Created by: <%= @single_room.user.username %> </h2>
     <% end %>
 
     <%= turbo_stream_from @single_room %>

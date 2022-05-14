@@ -1,12 +1,12 @@
 <div class="container">
     <h1>Zut</h1>
-    <!-- <p>Welcome <%= @current_user.username %></p> -->
     <h2>How to Play</h2>
     <p>TODO:</p>
 
     <hr>
 
     <h2>Users Online</h2>
+    <div><%= @current_user.username %>(you)</div>
     <%= turbo_stream_from "users" %>
     <div id="users">
         <%= render @users %>
