@@ -2,8 +2,15 @@
     <% if @single_room %>
         <h1><%= @single_room.name %></h1>
         <h2>Created by: <%= @single_room.user.username %> </h2>
-    <% end %>
 
+        <% if @is_groupparticipant %>
+            <%= render partial: 'layouts/leave_room_form' %>
+        <% else %>
+            <%= render partial: 'layouts/join_room_form' %>
+        <% end %>
+
+    <% end %>
+    <hr>
     <%= turbo_stream_from @single_room %>
     <div id="messages">
         <%= render @messages %>

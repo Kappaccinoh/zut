@@ -1,0 +1,6 @@
+<%= form_with(model: @groupparticipant, remote: true, class:"d-flex",
+    data: {}) do |f| %>
+    <%= f.hidden_field :room_id, :value => @single_room.id %>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.submit 'Join Group', data: { disable_with: false} %>
+<% end %>

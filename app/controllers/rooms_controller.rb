@@ -17,6 +17,9 @@ class RoomsController < ApplicationController
     @rooms = Room.public_rooms
     @users = User.all_except(@current_user)
 
+    @groupparticipant = Groupparticipant.new
+    @is_groupparticipant = Groupparticipant.where(user_id: current_user, room_id: @single_room.id).exists?
+
     @room = Room.new
     @message = Message.new
     @messages = @single_room.messages
