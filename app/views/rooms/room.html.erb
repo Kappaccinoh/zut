@@ -9,14 +9,13 @@
             <%= render partial: 'layouts/join_room_form' %>
         <% end %>
         <h2>Group Participants</h2>
-        <% if @groupparticipants.nil? %>
-            <h3>No Participants</h3>
-        <% else %>
+        <% if @groupparticipants.exists? %>
             <% @groupparticipants.each do |groupparticipants| %>
                 <%= groupparticipants.username %>
             <% end %>
+        <% else %>
+            <h3>No Participants</h3>
         <% end%>
-
     <% end %>
     <hr>
     <%= turbo_stream_from @single_room %>
