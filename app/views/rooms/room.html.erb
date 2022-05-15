@@ -8,6 +8,14 @@
         <% else %>
             <%= render partial: 'layouts/join_room_form' %>
         <% end %>
+        <h2>Group Participants</h2>
+        <% if @groupparticipants.nil? %>
+            <h3>No Participants</h3>
+        <% else %>
+            <% @groupparticipants.each do |groupparticipants| %>
+                <%= groupparticipants.username %>
+            <% end %>
+        <% end%>
 
     <% end %>
     <hr>

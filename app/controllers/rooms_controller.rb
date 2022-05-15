@@ -17,8 +17,17 @@ class RoomsController < ApplicationController
     @rooms = Room.public_rooms
     @users = User.all_except(@current_user)
 
+    # Joining or leaving a group
     @groupparticipant = Groupparticipant.new
     @is_groupparticipant = Groupparticipant.where(user_id: current_user, room_id: @single_room.id).exists?
+    
+    # Showing names of group members
+    @groupparticipants = Groupparticipant.where(room_id: @single_room.id)
+    group_user_ids = []
+    @groupparticipants.each do |groupparticipant|
+      group_user_ids.append(groupparticipant.user_id)
+    end
+    @groupparticipants = User.where(id: group_user_ids)
 
     @room = Room.new
     @message = Message.new
