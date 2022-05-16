@@ -20,6 +20,7 @@ class RoomsController < ApplicationController
     # Joining or leaving a group
     @groupparticipant = Groupparticipant.new
     @is_groupparticipant = Groupparticipant.where(user_id: current_user, room_id: @single_room.id).exists?
+    @is_groupcreator = Room.where(user_id: current_user).exists?
     
     # Showing names of group members
     @groupparticipants = Groupparticipant.where(room_id: @single_room.id)

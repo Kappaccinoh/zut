@@ -3,11 +3,15 @@
         <h1><%= @single_room.name %></h1>
         <h2>Created by: <%= @single_room.user.username %> </h2>
 
-        <% if @is_groupparticipant %>
-            <%= render partial: 'layouts/leave_room_form' %>
+        <% if @is_groupcreator %>
         <% else %>
-            <%= render partial: 'layouts/join_room_form' %>
+            <% if @is_groupparticipant %>
+                <%= render partial: 'layouts/leave_room_form' %>
+            <% else %>
+                <%= render partial: 'layouts/join_room_form' %>
+            <% end %>
         <% end %>
+
         <h2>Group Participants</h2>
         <% if @groupparticipants.exists? %>
             <% @groupparticipants.each do |groupparticipants| %>
@@ -16,6 +20,7 @@
         <% else %>
             <h3>No Participants</h3>
         <% end%>
+
     <% end %>
     <hr>
     <%= turbo_stream_from @single_room %>
