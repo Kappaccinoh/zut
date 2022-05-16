@@ -14,10 +14,15 @@ class RoomsController < ApplicationController
       end
       @joined_rooms = Room.where(id: joined_room_ids)
       @has_joined_rooms = @joined_rooms.exists?
+
+      # Rooms that a player has created
+      @created_rooms = Room.where(user_id: current_user.id)
+      @has_created_rooms = @created_rooms.exists?
   end
 
   def create
     @room = Room.create(name: params["room"]["name"], user_id: current_user.id)
+    redirect_back(fallback_location: root_path)
   end
 
   def show
@@ -44,5 +49,12 @@ class RoomsController < ApplicationController
     @messages = @single_room.messages
 
     render "room"
+  end
+
+  def destroy
+    @room = Room.find(params["id"])
+    @room.destroy
+    
+    redirect_to root_url
   end
 end

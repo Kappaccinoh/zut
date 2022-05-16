@@ -6,15 +6,33 @@
     <hr>
 
     <h2>Users Online</h2>
-    <div><%= @current_user.username %> (you)</div>
+    <div><%= current_user.username %> (you)</div>
     <%= turbo_stream_from "users" %>
     <div id="users">
         <%= render @users %>
     </div>
 
-    <br>
+    <hr>
 
-    <h2>Joined Rooms</h2>
+    <h2><u>Your Rooms</u></h2>
+    <% if @has_created_rooms %>
+        <ul>
+            <% @created_rooms.each do |j| %>
+                <li>
+                    <%= link_to "#{j.name}", room_path(j) %>
+                    <%= form_with url: room_path(j), method: "delete", class: "d-inline" do |f| %>
+                        <%= f.hidden_field :id, :value => j.id %>
+                        <%= f.submit 'delete' %>
+                    <% end %>
+                </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <h4>None Created</h4>
+    <% end %>
+
+
+    <h2><u>Joined Rooms</u></h2>
     <% if @has_joined_rooms %>
         <ul>
             <% @joined_rooms.each do |j| %>
@@ -33,7 +51,7 @@
     <div id="rooms">
         <%= render @rooms %>
     </div>
-    
+
     <br>
 
     <h3>Create A Room</h3>
