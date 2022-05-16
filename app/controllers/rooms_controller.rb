@@ -5,6 +5,15 @@ class RoomsController < ApplicationController
       @rooms = Room.public_rooms
       @users = User.all_except(@current_user)
       @room = Room.new
+
+      # Rooms that a player has already joined
+      @joined_rooms = Groupparticipant.where(user_id: current_user.id)
+      joined_room_ids = []
+      @joined_rooms.each do |joined_room|
+        joined_room_ids.append(joined_room.room_id)
+      end
+      @joined_rooms = Room.where(id: joined_room_ids)
+      @has_joined_rooms = @joined_rooms.exists?
   end
 
   def create

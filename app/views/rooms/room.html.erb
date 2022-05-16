@@ -4,6 +4,7 @@
         <h2>Created by: <%= @single_room.user.username %> </h2>
 
         <% if @is_groupcreator %>
+            <!-- TODO: Delete Group Button -->
         <% else %>
             <% if @is_groupparticipant %>
                 <%= render partial: 'layouts/leave_room_form' %>
@@ -11,8 +12,8 @@
                 <%= render partial: 'layouts/join_room_form' %>
             <% end %>
         <% end %>
-
-        <h2>Group Participants</h2>
+        <hr>
+        <h2><u>Group Participants</u></h2>
         <% if @groupparticipants.exists? %>
             <% @groupparticipants.each do |groupparticipants| %>
                 <%= groupparticipants.username %>
