@@ -2,7 +2,9 @@ class RoomsController < ApplicationController
   def index
       @current_user = current_user
       redirect_to '/signin' unless @current_user
-      @rooms = Room.public_rooms
+      @rooms = Room.all
+      @rooms_open = Room.open_rooms
+      @rooms_inprogress = Room.inprogress_rooms
       @users = User.all_except(@current_user)
       @room = Room.new
 
@@ -28,7 +30,6 @@ class RoomsController < ApplicationController
   def show
     @current_user = current_user
     @single_room = Room.find(params[:id])
-    @rooms = Room.public_rooms
     @users = User.all_except(@current_user)
 
     # Joining or leaving a group
@@ -56,5 +57,11 @@ class RoomsController < ApplicationController
     @room.destroy
     
     redirect_to root_url
+  end
+
+  def update
+    @room = Room.find(params["id"])
+    @room.update(is_active: params["state"])
+    redirect_back(fallback_location: root_path)
   end
 end

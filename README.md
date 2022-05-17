@@ -8,11 +8,9 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Clean up interface w Bootstrap/CSS
 
 2. Minor Backend Setup
-- (DONE) Show which rooms a player has already joined
-- (DONE) Owner should be able to delete each game room
-- (DONE) Back Button in each game room to navigate back to homescreen
-- (DONE) Show Rooms which a player has already created
 - Set up Turbo listening for other tags to get real time updates without having to refresh page
+- Create a way to lock and unlock the room -> in preparation for playing the game
+- Figure out how to do the back and forth toggling between players
 
 3. Game Mechanics Setup (Major Backend)
 - Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished
@@ -21,3 +19,10 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Alternating between players in competitive mode
 - Scoreboard to keep track of words answered by each participant?
 - Show which rooms are in progress
+
+# Done/Log
+2. Minor Backend Setup
+- (DONE) Show which rooms a player has already joined
+- (DONE) Owner should be able to delete each game room
+- (DONE) Back Button in each game room to navigate back to homescreen
+- (DONE) Show Rooms which a player has already created

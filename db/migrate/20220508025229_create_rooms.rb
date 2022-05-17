@@ -3,7 +3,7 @@ class CreateRooms < ActiveRecord::Migration[7.0]
     create_table :rooms do |t|
       t.references :user, null: false, foreign_key: true
       t.string :name
-      t.boolean :is_private, :default => false
+      t.boolean :is_active, :default => false
 
       t.timestamps
     end

@@ -1,6 +1,22 @@
 <div class="container vh-100 bg-dark">
     <% if @single_room %>
-        <%= link_to 'back', root_url %>
+        <div class="d-flex justify-content-between">
+            <%= link_to 'back', root_url %>
+
+            <% if @single_room.is_active == false %>
+                <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
+                    <%= f.hidden_field :state, :value => true %>
+                    <%= f.submit 'Start Game' %>
+                <% end %>
+            <% else %>
+                <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
+                    <%= f.hidden_field :state, :value => false %>
+                    <%= f.submit 'End Game' %>
+                <% end %>
+            <% end %>
+
+        </div>
+
         <h1><%= @single_room.name %></h1>
         <h3>Created by: <%= @single_room.user.username %></h3>
         <hr>

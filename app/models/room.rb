@@ -4,6 +4,7 @@ class Room < ApplicationRecord
     has_many :groupparticipants, dependent: :destroy
     belongs_to :user, autosave: true
     
-    scope :public_rooms, -> { where(is_private: false) }
+    scope :open_rooms, -> { where(is_active: false) }
+    scope :inprogress_rooms, -> { where(is_active: true) }
     after_create_commit { broadcast_append_to "rooms" }
 end
