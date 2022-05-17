@@ -1,23 +1,60 @@
 <div class="container">
     <h1>Zut</h1>
-    <!-- <p>Welcome <%= @current_user.username %></p> -->
     <h2>How to Play</h2>
     <p>TODO:</p>
 
     <hr>
 
     <h2>Users Online</h2>
+    <div><%= current_user.username %> (you)</div>
     <%= turbo_stream_from "users" %>
     <div id="users">
         <%= render @users %>
     </div>
 
-    <h2>Rooms Available</h2>
+    <hr>
+
+    <h2><u>Your Rooms</u></h2>
+    <% if @has_created_rooms %>
+        <ul>
+            <% @created_rooms.each do |j| %>
+                <li>
+                    <%= link_to "#{j.name}", room_path(j) %>
+                    <%= form_with url: room_path(j), method: "delete", class: "d-inline" do |f| %>
+                        <%= f.hidden_field :id, :value => j.id %>
+                        <%= f.submit 'delete' %>
+                    <% end %>
+                </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <h4>None Created</h4>
+    <% end %>
+
+
+    <h2><u>Joined Rooms</u></h2>
+    <% if @has_joined_rooms %>
+        <ul>
+            <% @joined_rooms.each do |j| %>
+                <li><%= link_to "#{j.name}", room_path(j) %></li>
+            <% end %>
+        </ul>
+    <% else %>
+        <h3>None Joined</h3>
+        <!-- Click here to join a random room -->
+    <% end %>
+
+    <hr>
+
+    <h2>All Rooms</h2>
     <%= turbo_stream_from "rooms" %>
     <div id="rooms">
         <%= render @rooms %>
     </div>
 
+    <br>
+
     <h3>Create A Room</h3>
     <%= render partial: "layouts/new_room_form" %>
+    
 </div>

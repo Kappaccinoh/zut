@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :messages
   end
   resources :users
+  resources :groupparticipants
   root 'rooms#index'
 end
