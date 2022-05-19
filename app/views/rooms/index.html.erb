@@ -48,7 +48,11 @@
     <% if @has_joined_rooms %>
         <ul>
             <% @joined_rooms.each do |j| %>
-                <li><%= link_to "#{j.name}", room_path(j) %></li>
+                <% if j.is_active %>
+                    <li><%= "#{j.name} (In Progress)" %></li>
+                <% else %>
+                    <li><%= link_to "#{ j.name }", room_path(j) %></li>
+                <% end %>
             <% end %>
         </ul>
     <% else %>

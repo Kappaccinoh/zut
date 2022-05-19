@@ -10,6 +10,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 2. Minor Backend Setup
 - Set up Turbo listening for other tags to get real time updates without having to refresh page
 - Figure out how to do the back and forth toggling between players
+- Locked Rooms cannot be left or joined
 
 3. Game Mechanics Setup (Major Backend)
 - Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished

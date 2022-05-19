@@ -36,18 +36,24 @@
                 <%= f.submit 'delete group' %>
             <% end %>
         <% else %>
-            <% if @is_groupparticipant %>
-                <%= render partial: 'layouts/leave_room_form' %>
+            <% unless @single_room.is_active %>
+                <% if @is_groupparticipant %>
+                    <%= render partial: 'layouts/leave_room_form' %>
+                <% else %>
+                    <%= render partial: 'layouts/join_room_form' %>
+                <% end %>
             <% else %>
-                <%= render partial: 'layouts/join_room_form' %>
+                <h4>Room in Progress</h4>
             <% end %>
         <% end %>
         
         <h3><u>Group Participants</u></h3>
         <% if @groupparticipants.exists? %>
-            <% @groupparticipants.each do |groupparticipants| %>
-                <%= groupparticipants.username %>
-            <% end %>
+            <ul>
+                <% @groupparticipants.each do |groupparticipants| %>
+                    <li><%= groupparticipants.username %></li>
+                <% end %>
+            </ul>
         <% else %>
             <h4>No Participants</h4>
         <% end%>
