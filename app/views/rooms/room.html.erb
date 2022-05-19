@@ -8,18 +8,20 @@
                     <%= msg %>
                 </div>
             <% end %>
-
-            <% if @single_room.is_active == false %>
-                <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
-                    <%= f.hidden_field :room_id, :value => @single_room.id %>
-                    <%= f.hidden_field :state, :value => true %>
-                    <%= f.submit 'Start Game' %>
-                <% end %>
-            <% else %>
-                <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
-                    <%= f.hidden_field :room_id, :value => @single_room.id %>
-                    <%= f.hidden_field :state, :value => false %>
-                    <%= f.submit 'End Game' %>
+            
+            <% if @single_room.user_id == @current_user.id %>
+                <% if @single_room.is_active == false %>
+                    <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
+                        <%= f.hidden_field :room_id, :value => @single_room.id %>
+                        <%= f.hidden_field :state, :value => true %>
+                        <%= f.submit 'Start Game' %>
+                    <% end %>
+                <% else %>
+                    <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
+                        <%= f.hidden_field :room_id, :value => @single_room.id %>
+                        <%= f.hidden_field :state, :value => false %>
+                        <%= f.submit 'End Game' %>
+                    <% end %>
                 <% end %>
             <% end %>
 

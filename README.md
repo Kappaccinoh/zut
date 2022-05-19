@@ -27,3 +27,4 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Show Rooms which a player has already created
 - (DONE) Create a way to lock and unlock the room -> in preparation for playing the game
 - (DONE) Need logic to start a game with minimum 2 players AND flash error message
+- (DONE) Only group creator can start or end a game
