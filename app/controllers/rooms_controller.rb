@@ -60,8 +60,29 @@ class RoomsController < ApplicationController
   end
 
   def update
-    @room = Room.find(params["id"])
-    @room.update(is_active: params["state"])
-    redirect_back(fallback_location: root_path)
+    # check if room has mininimum number of required players (2)
+    @groupparticipants = Groupparticipant.where(room_id: params["room_id"])
+    group_user_ids = []
+    @groupparticipants.each do |groupparticipant|
+      group_user_ids.append(groupparticipant.user_id)
+    end
+    @groupparticipants = User.where(id: group_user_ids)
+    @groupparticipants = @groupparticipants.count
+
+    if params["state"] == "true" # meaning request is trying to start the game
+      if @groupparticipants >= 2
+        @room = Room.find(params["room_id"])
+        @room.update(is_active: params["state"])
+        redirect_back(fallback_location: root_path)
+
+      else
+        flash.alert= "Not enough players"
+        redirect_back(fallback_location: root_path)
+      end
+    else # request is trying to end the game
+      @room = Room.find(params["id"])
+      @room.update(is_active: params["state"])
+      redirect_back(fallback_location: root_path)
+    end
   end
 end

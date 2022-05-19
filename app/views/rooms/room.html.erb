@@ -3,13 +3,21 @@
         <div class="d-flex justify-content-between">
             <%= link_to 'back', root_url %>
 
+            <% flash.each do |type, msg| %>
+                <div>
+                    <%= msg %>
+                </div>
+            <% end %>
+
             <% if @single_room.is_active == false %>
                 <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
+                    <%= f.hidden_field :room_id, :value => @single_room.id %>
                     <%= f.hidden_field :state, :value => true %>
                     <%= f.submit 'Start Game' %>
                 <% end %>
             <% else %>
                 <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
+                    <%= f.hidden_field :room_id, :value => @single_room.id %>
                     <%= f.hidden_field :state, :value => false %>
                     <%= f.submit 'End Game' %>
                 <% end %>
