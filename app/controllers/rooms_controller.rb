@@ -24,6 +24,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.create(name: params["room"]["name"], user_id: current_user.id)
+    @groupparticipant = Groupparticipant.create(user_id: current_user.id, room_id: @room.id)
     redirect_back(fallback_location: root_path)
   end
 
@@ -73,9 +74,20 @@ class RoomsController < ApplicationController
       if @groupparticipants >= 2
         @room = Room.find(params["room_id"])
         @room.update(is_active: params["state"])
+
+        # create the GameTurn Table (only active games will have GameTurn entries)
+        # room_player_ids = []
+        #@room_players = Groupparticipant.where(room_id: params["room_id"])
+        #@room_players.each do |r|
+          #room_player_ids.append(r.user_id)
+        #end
+        #room_player_ids.
+        
+        #@gameturn = GameTurn.create()
+
         redirect_back(fallback_location: root_path)
 
-      else
+      else # unable to start game
         flash.alert= "Not enough players"
         redirect_back(fallback_location: root_path)
       end

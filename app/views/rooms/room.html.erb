@@ -51,7 +51,11 @@
         <% if @groupparticipants.exists? %>
             <ul>
                 <% @groupparticipants.each do |groupparticipants| %>
-                    <li><%= groupparticipants.username %></li>
+                    <% if groupparticipants == current_user %>
+                        <li><%= groupparticipants.username %>(You)</li>
+                    <% else %>
+                        <li><%= groupparticipants.username %></li>
+                    <% end %>
                 <% end %>
             </ul>
         <% else %>
@@ -61,6 +65,9 @@
         
     <% end %>
     <hr>
+    <!-- TODO: Simulate Next Player Button, we can hide it and use javascript to .click() it?
+     -->
+
     <%= turbo_stream_from @single_room %>
     <div id="messages">
         <%= render @messages %>

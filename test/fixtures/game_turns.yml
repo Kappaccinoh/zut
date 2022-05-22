@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_player: MyString
+  room_id: MyString
+  room_players: MyString
+
+two:
+  current_player: MyString
+  room_id: MyString
+  room_players: MyString
