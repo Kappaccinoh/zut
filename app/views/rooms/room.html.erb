@@ -30,7 +30,7 @@
         <h1><%= @single_room.name %></h1>
         <h3>Created by: <%= @single_room.user.username %></h3>
         <hr>
-        <% if @is_groupcreator %>
+        <% if @is_groupcreator && @single_room.is_active == false %>
             <%= form_with url: room_path(@single_room), method: "delete" do |f| %>
                 <%= f.hidden_field :id, :value => @single_room.id %>
                 <%= f.submit 'delete group' %>

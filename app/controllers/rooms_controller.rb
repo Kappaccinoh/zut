@@ -71,19 +71,33 @@ class RoomsController < ApplicationController
     @groupparticipants = @groupparticipants.count
 
     if params["state"] == "true" # meaning request is trying to start the game
-      if @groupparticipants >= 2
+      if @groupparticipants # >= 2
         @room = Room.find(params["room_id"])
         @room.update(is_active: params["state"])
+        flash.alert = "Room in Progress"
 
         # create the GameTurn Table (only active games will have GameTurn entries)
-        # room_player_ids = []
-        #@room_players = Groupparticipant.where(room_id: params["room_id"])
-        #@room_players.each do |r|
-          #room_player_ids.append(r.user_id)
-        #end
-        #room_player_ids.
+        room_player_ids = []
+        @room_players = Groupparticipant.where(room_id: params["room_id"])
+        @room_players.each do |r|
+          room_player_ids.append(r.user_id)
+        end
         
-        #@gameturn = GameTurn.create()
+        # note that the array that is entered into the the database is presorted, so 
+        # future game changes will reuse the same array
+        room_player_ids = room_player_ids.sort
+
+        max_index = room_player_ids.length() - 1
+        starting_player_index = rand(0..max_index)
+        # creating gameturn entry
+        @gameturn = GameTurn.create(
+          user_id: room_player_ids[starting_player_index],
+          room_id: params["room_id"],
+          room_players: room_player_ids
+        )
+        puts "------------------------------"
+        print room_player_ids
+        puts "------------------------------"
 
         redirect_back(fallback_location: root_path)
 
@@ -94,6 +108,12 @@ class RoomsController < ApplicationController
     else # request is trying to end the game
       @room = Room.find(params["id"])
       @room.update(is_active: params["state"])
+
+      @gameturn = GameTurn.where(room_id: params["room_id"]) # consider just using .find instead
+      @gameturn.each do |g| 
+        g.destroy
+      end
+
       redirect_back(fallback_location: root_path)
     end
   end
