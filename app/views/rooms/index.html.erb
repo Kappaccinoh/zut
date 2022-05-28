@@ -12,17 +12,6 @@
         <%= render @users %>
     </div>
 
-    <br>
-
-    <h2>Open Rooms</h2>
-    <ul>
-        <% @rooms_open.each do |r| %>
-            <li>
-                <%= link_to "#{ r.name }", room_path(r) %>
-            </li>
-        <% end %>
-    </ul>
-
     <hr>
 
     <h2><u>Your Rooms</u></h2>
@@ -61,6 +50,27 @@
     <% end %>
 
     <hr>
+
+    <h2>Open Rooms</h2>
+    <ul>
+        <% @rooms_open.each do |r| %>
+            <li>
+                <%= link_to "#{ r.name }", room_path(r) %>
+            </li>
+        <% end %>
+    </ul>
+
+    <br>
+
+    <h2>Rooms Currently In Progress</h2>
+    <ul>
+        <% @rooms_inprogress.each do |r| %>
+            <li><%= r.name %></li>
+        <% end %>
+    </ul>
+
+    <br>
+
 
     <h2>All Rooms</h2>
     <%= turbo_stream_from "rooms" %>

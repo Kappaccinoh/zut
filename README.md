@@ -6,19 +6,18 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - UI for general game interface, layouts, where players will show up as
 - Interface for word clearance, strikethrough? animated sliding on the textarea once a word is cleared?
 - Clean up interface w Bootstrap/CSS
+- Homepage Tab system to filter (in progress, available, your owned rooms, joined rooms)
 
 2. Minor Backend Setup
 - Set up Turbo listening for other tags to get real time updates without having to refresh page
-- Figure out how to do the back and forth toggling between players
-- Locked Rooms cannot be left or joined
 
 3. Game Mechanics Setup (Major Backend)
 - Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished
 - Coop vs Competitive mode?
 - Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
-- Alternating between players in competitive mode
 - Scoreboard to keep track of words answered by each participant?
-- Show which rooms are in progress
+- Figure out how to do the back and forth toggling between players
+
 
 # Done/Log
 2. Minor Backend Setup
@@ -29,3 +28,9 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Create a way to lock and unlock the room -> in preparation for playing the game
 - (DONE) Need logic to start a game with minimum 2 players AND flash error message
 - (DONE) Only group creator can start or end a game
+- (DONE) Locked Rooms cannot be left or joined
+
+3. Game Mechanics Setup (Major Backend)
+- (DONE) Show which rooms are in progress
+
+

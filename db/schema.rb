@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_20_133022) do
   create_table "game_turns", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
+    t.integer "room_players", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_game_turns_on_room_id"

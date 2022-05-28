@@ -18,7 +18,7 @@ GameTurn
 - ID
 - User_ID
 - Room_ID
-(Structure is very similar to that of Groupparticipant, but the uses are for different cases)
+- Array of players
 
 Room
 - ID
