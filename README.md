@@ -32,5 +32,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 3. Game Mechanics Setup (Major Backend)
 - (DONE) Show which rooms are in progress
+- (DONE) Figure out destroy issue with pg's relational database set up (n.b no room dependent: :destroy with GameTurn)
+
 
 

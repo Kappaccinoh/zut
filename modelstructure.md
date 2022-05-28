@@ -3,7 +3,7 @@ Documentation for Zutapp
 
 //
 
-22 May 2022
+28 May 2022
 
 User
 - ID
@@ -20,7 +20,7 @@ GameTurn
 - Room_ID
 - Array of players
 
-Room
+Room (Note that you can't delete a Room if it is currently active)
 - ID
 - Name
 - User_ID
