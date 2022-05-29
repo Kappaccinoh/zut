@@ -7,6 +7,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Interface for word clearance, strikethrough? animated sliding on the textarea once a word is cleared?
 - Clean up interface w Bootstrap/CSS
 - Homepage Tab system to filter (in progress, available, your owned rooms, joined rooms)
+- Player Screen Interface/Game Room Interface
 
 2. Minor Backend Setup
 - Set up Turbo listening for other tags to get real time updates without having to refresh page

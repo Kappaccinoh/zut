@@ -1,4 +1,4 @@
-<div class="container vh-100 bg-dark">
+<div class="container">
     <% if @single_room %>
         <div class="d-flex justify-content-between">
             <%= link_to 'back', root_url %>
@@ -85,5 +85,7 @@
     <div id="messages">
         <%= render @messages %>
     </div>
-    <%= render partial: 'layouts/new_message_form' %>
+    <div class="d-flex justify-content-center">
+        <%= render partial: 'layouts/new_message_form' %>
+    </div>
 </div>
