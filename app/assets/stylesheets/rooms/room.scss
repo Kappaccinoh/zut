@@ -1,5 +1,7 @@
 /* For room.html.erb */
 
+$background-color: #343a40;
+
 #messages {
     overflow: auto;
     height: 55vh;
@@ -16,6 +18,6 @@
 }
 
 .container {
-    background: #343a40;
+    background: $background-color;
     height: 100vh;
 }
