@@ -1,12 +1,21 @@
-class GameTurnsController < ApplicationController
+class GameturnsController < ApplicationController
     def update
-        # TODO: Grab all the players in the room currently and figure out a mechanism to iterate
-        # the indices in the array. Patch the database with the new number
-        player_ids = []
-        @players = Groupparticipant.where(room_id: params["room_id"])
-        @players.each do |p|
-            player_ids.append(p.user_id)
+        @game_turn = GameTurn.where(room: params['room_id'])
+        player_ids = @game_turn[0].room_players
+        player_ids_length = player_ids.length
+
+        new_index = 0
+        for i in (0...player_ids_length)
+            if player_ids[i] == @game_turn[0].user_id
+                new_index = i + 1
+            end
         end
-        
+
+        new_index = new_index % player_ids_length
+        new_user_id = player_ids[new_index]
+
+        @game_turn[0].update(user_id: new_user_id)
+
+        redirect_back(fallback_location: root_path)
     end
 end

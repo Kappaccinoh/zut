@@ -16,7 +16,9 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Coop vs Competitive mode?
 - Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
 - Scoreboard to keep track of words answered by each participant?
-- Figure out how to do the back and forth toggling between players
+
+4. Future, External Plans
+- Explore Testing options using Cypress?
 
 
 # Done/Log
@@ -33,6 +35,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 3. Game Mechanics Setup (Major Backend)
 - (DONE) Show which rooms are in progress
 - (DONE) Figure out destroy issue with pg's relational database set up (n.b no room dependent: :destroy with GameTurn)
+- (DONE) Figure out how to do the back and forth toggling between players (start with a button on the room page first)
+
 
 
 

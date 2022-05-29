@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
+  
   resources :users
   resources :groupparticipants
+  resources :gameturns
+
   root 'rooms#index'
 end

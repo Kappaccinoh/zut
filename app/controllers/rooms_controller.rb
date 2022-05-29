@@ -20,10 +20,12 @@ class RoomsController < ApplicationController
       # Rooms that a player has created
       @created_rooms = Room.where(user_id: current_user.id)
       @has_created_rooms = @created_rooms.exists?
+
+      
   end
 
   def create
-    @room = Room.create(name: params["room"]["name"], user_id: current_user.id)
+    @room = Room.create(name: params['room']['name'], user_id: current_user.id)
     @groupparticipant = Groupparticipant.create(user_id: current_user.id, room_id: @room.id)
     redirect_back(fallback_location: root_path)
   end
@@ -50,11 +52,16 @@ class RoomsController < ApplicationController
     @message = Message.new
     @messages = @single_room.messages
 
-    render "room"
+    @current_player = GameTurn.where(room_id: @single_room.id)
+    if @current_player.exists? # when you end the game, GameTurn entry doesnt exist, so @current_player[0] will not exist either // error prevention
+      @current_player = @current_player[0].user.username
+    end
+
+    render 'room'
   end
 
   def destroy
-    @room = Room.find(params["id"])
+    @room = Room.find(params['id'])
     @room.destroy
     
     redirect_to root_url
@@ -62,7 +69,7 @@ class RoomsController < ApplicationController
 
   def update
     # check if room has mininimum number of required players (2)
-    @groupparticipants = Groupparticipant.where(room_id: params["room_id"])
+    @groupparticipants = Groupparticipant.where(room_id: params['room_id'])
     group_user_ids = []
     @groupparticipants.each do |groupparticipant|
       group_user_ids.append(groupparticipant.user_id)
@@ -70,15 +77,15 @@ class RoomsController < ApplicationController
     @groupparticipants = User.where(id: group_user_ids)
     @groupparticipants = @groupparticipants.count
 
-    if params["state"] == "true" # meaning request is trying to start the game
+    if params['state'] == "true" # meaning request is trying to start the game
       if @groupparticipants # >= 2
-        @room = Room.find(params["room_id"])
-        @room.update(is_active: params["state"])
+        @room = Room.find(params['room_id'])
+        @room.update(is_active: params['state'])
         flash.alert = "Room in Progress"
 
         # create the GameTurn Table (only active games will have GameTurn entries)
         room_player_ids = []
-        @room_players = Groupparticipant.where(room_id: params["room_id"])
+        @room_players = Groupparticipant.where(room_id: params['room_id'])
         @room_players.each do |r|
           room_player_ids.append(r.user_id)
         end
@@ -92,13 +99,10 @@ class RoomsController < ApplicationController
         # creating gameturn entry
         @gameturn = GameTurn.create(
           user_id: room_player_ids[starting_player_index],
-          room_id: params["room_id"],
+          room_id: params['room_id'],
           room_players: room_player_ids
         )
-        puts "------------------------------"
-        print room_player_ids
-        puts "------------------------------"
-
+        
         redirect_back(fallback_location: root_path)
 
       else # unable to start game
@@ -106,10 +110,10 @@ class RoomsController < ApplicationController
         redirect_back(fallback_location: root_path)
       end
     else # request is trying to end the game
-      @room = Room.find(params["id"])
-      @room.update(is_active: params["state"])
+      @room = Room.find(params['id'])
+      @room.update(is_active: params['state'])
 
-      @gameturn = GameTurn.where(room_id: params["room_id"]) # consider just using .find instead
+      @gameturn = GameTurn.where(room_id: params['room_id']) # consider just using .find instead
       @gameturn.each do |g| 
         g.destroy
       end

@@ -1,4 +1,4 @@
-<%= form_with url: groupparticipant_path, method: "delete" do |f| %>
+<%= form_with url: groupparticipant_path, method: 'delete' do |f| %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :room_id, :value => @single_room.id %>
     <%= f.submit 'Leave Group' %>
