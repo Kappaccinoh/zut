@@ -1,4 +1,4 @@
-<div class="container">
+<div style="margin: 50px;">
     <h1>Zut</h1>
     <h2>How to Play</h2>
     <p>TODO:</p>
@@ -31,12 +31,17 @@
         <h4>None Created</h4>
     <% end %>
 
-
+    <br>
+    
     <h2><u>Joined Rooms</u></h2>
     <% if @has_joined_rooms %>
         <ul>
             <% @joined_rooms.each do |j| %>
-                <li><%= link_to "#{j.name}", room_path(j) %></li>
+                <% if j.is_active %>
+                    <li><%= "#{j.name} (In Progress)" %></li>
+                <% else %>
+                    <li><%= link_to "#{ j.name }", room_path(j) %></li>
+                <% end %>
             <% end %>
         </ul>
     <% else %>
@@ -45,6 +50,27 @@
     <% end %>
 
     <hr>
+
+    <h2>Open Rooms</h2>
+    <ul>
+        <% @rooms_open.each do |r| %>
+            <li>
+                <%= link_to "#{ r.name }", room_path(r) %>
+            </li>
+        <% end %>
+    </ul>
+
+    <br>
+
+    <h2>Rooms Currently In Progress</h2>
+    <ul>
+        <% @rooms_inprogress.each do |r| %>
+            <li><%= r.name %></li>
+        <% end %>
+    </ul>
+
+    <br>
+
 
     <h2>All Rooms</h2>
     <%= turbo_stream_from "rooms" %>

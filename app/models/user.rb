@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_many :messages
     has_many :rooms
     has_many :groupparticipants
+    has_many :gameturns
 
     scope :all_except, ->(user) { where.not(id: user) }
     after_create_commit { broadcast_append_to "users" }

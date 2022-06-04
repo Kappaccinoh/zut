@@ -2,7 +2,9 @@ class RoomsController < ApplicationController
   def index
       @current_user = current_user
       redirect_to '/signin' unless @current_user
-      @rooms = Room.public_rooms
+      @rooms = Room.all
+      @rooms_open = Room.open_rooms
+      @rooms_inprogress = Room.inprogress_rooms
       @users = User.all_except(@current_user)
       @room = Room.new
 
@@ -18,17 +20,19 @@ class RoomsController < ApplicationController
       # Rooms that a player has created
       @created_rooms = Room.where(user_id: current_user.id)
       @has_created_rooms = @created_rooms.exists?
+
+      
   end
 
   def create
-    @room = Room.create(name: params["room"]["name"], user_id: current_user.id)
+    @room = Room.create(name: params['room']['name'], user_id: current_user.id)
+    @groupparticipant = Groupparticipant.create(user_id: current_user.id, room_id: @room.id)
     redirect_back(fallback_location: root_path)
   end
 
   def show
     @current_user = current_user
     @single_room = Room.find(params[:id])
-    @rooms = Room.public_rooms
     @users = User.all_except(@current_user)
 
     # Joining or leaving a group
@@ -43,18 +47,79 @@ class RoomsController < ApplicationController
       group_user_ids.append(groupparticipant.user_id)
     end
     @groupparticipants = User.where(id: group_user_ids)
+    @only_one_groupparticipant if @groupparticipants.length == 1
 
     @room = Room.new
     @message = Message.new
     @messages = @single_room.messages
 
-    render "room"
+    @current_player = GameTurn.where(room_id: @single_room.id)
+    if @current_player.exists? # when you end the game, GameTurn entry doesnt exist, so @current_player[0] will not exist either // error prevention
+      @current_player = @current_player[0].user.username
+    end
+
+    render 'room'
   end
 
   def destroy
-    @room = Room.find(params["id"])
+    @room = Room.find(params['id'])
     @room.destroy
     
     redirect_to root_url
+  end
+
+  def update
+    # check if room has mininimum number of required players (2)
+    @groupparticipants = Groupparticipant.where(room_id: params['room_id'])
+    group_user_ids = []
+    @groupparticipants.each do |groupparticipant|
+      group_user_ids.append(groupparticipant.user_id)
+    end
+    @groupparticipants = User.where(id: group_user_ids)
+    @groupparticipants = @groupparticipants.count
+
+    if params['state'] == "true" # meaning request is trying to start the game
+      if @groupparticipants # >= 2
+        @room = Room.find(params['room_id'])
+        @room.update(is_active: params['state'])
+        flash.alert = "Room in Progress"
+
+        # create the GameTurn Table (only active games will have GameTurn entries)
+        room_player_ids = []
+        @room_players = Groupparticipant.where(room_id: params['room_id'])
+        @room_players.each do |r|
+          room_player_ids.append(r.user_id)
+        end
+        
+        # note that the array that is entered into the the database is presorted, so 
+        # future game changes will reuse the same array
+        room_player_ids = room_player_ids.sort
+
+        max_index = room_player_ids.length() - 1
+        starting_player_index = rand(0..max_index)
+        # creating gameturn entry
+        @gameturn = GameTurn.create(
+          user_id: room_player_ids[starting_player_index],
+          room_id: params['room_id'],
+          room_players: room_player_ids
+        )
+        
+        redirect_back(fallback_location: root_path)
+
+      else # unable to start game
+        flash.alert= "Not enough players"
+        redirect_back(fallback_location: root_path)
+      end
+    else # request is trying to end the game
+      @room = Room.find(params['id'])
+      @room.update(is_active: params['state'])
+
+      @gameturn = GameTurn.where(room_id: params['room_id']) # consider just using .find instead
+      @gameturn.each do |g| 
+        g.destroy
+      end
+
+      redirect_back(fallback_location: root_path)
+    end
   end
 end
