@@ -1,6 +1,10 @@
 # zut
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
+# Currently Working on
+- Setting Up JQuery and SASS, do I need to precompile each time I change my Javascript Folders?? Why isnt Jquery working on file?
+
+
 # TODO:
 1. Minor UI Related Issues
 - UI for general game interface, layouts, where players will show up as
@@ -11,6 +15,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 2. Minor Backend Setup
 - Set up Turbo listening for other tags to get real time updates without having to refresh page
+- Dont allow for a blank space room to be created
+- Dont allow for a blank space message to be created
 
 3. Game Mechanics Setup (Major Backend)
 - Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished
@@ -19,7 +25,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Scoreboard to keep track of words answered by each participant?
 
 4. Future, External Plans
-- Explore Testing options using Cypress?
+- Explore Testing options using Cypress or system/test in Rails
 
 
 # Done/Log
