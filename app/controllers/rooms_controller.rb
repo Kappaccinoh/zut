@@ -47,6 +47,7 @@ class RoomsController < ApplicationController
       group_user_ids.append(groupparticipant.user_id)
     end
     @groupparticipants = User.where(id: group_user_ids)
+    @only_one_groupparticipant if @groupparticipants.length == 1
 
     @room = Room.new
     @message = Message.new

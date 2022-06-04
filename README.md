@@ -2,10 +2,9 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-- Setting Up JQuery and SASS, do I need to precompile each time I change my Javascript Folders?? Why isnt Jquery working on file?
+- Setting Up JQuery, do I need to precompile each time I change my Javascript Folders?? Why isnt Jquery working on file?
 
-
-# TODO:
+# BACKLOG
 1. Minor UI Related Issues
 - UI for general game interface, layouts, where players will show up as
 - Interface for word clearance, strikethrough? animated sliding on the textarea once a word is cleared?
@@ -14,7 +13,6 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Player Screen Interface/Game Room Interface
 
 2. Minor Backend Setup
-- Set up Turbo listening for other tags to get real time updates without having to refresh page
 - Dont allow for a blank space room to be created
 - Dont allow for a blank space message to be created
 
@@ -43,6 +41,13 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Show which rooms are in progress
 - (DONE) Figure out destroy issue with pg's relational database set up (n.b no room dependent: :destroy with GameTurn)
 - (DONE) Figure out how to do the back and forth toggling between players (start with a button on the room page first)
+- (DONE) Set up Turbo listening for other tags to get real time updates without having to refresh page
+
+
+4. Future External Plans
+
+5. Meta Installation
+- (DONE) Installing and Get SASS & Bootstrap Working
 
 
 
