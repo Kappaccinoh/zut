@@ -2,7 +2,7 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-- Setting Up JQuery, do I need to precompile each time I change my Javascript Folders?? Why isnt Jquery working on file?
+- do I need to precompile each time I change my Javascript Folders?? 
 
 # BACKLOG
 1. Minor UI Related Issues
@@ -48,6 +48,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 5. Meta Installation
 - (DONE) Installing and Get SASS & Bootstrap Working
+- (DONE) Setting Up JQuery
 
 
 
