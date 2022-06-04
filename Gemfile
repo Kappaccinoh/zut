@@ -76,3 +76,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+group :test, :development do
+  # Cypress on Rails - https://github.com/shakacode/cypress-on-rails
+  gem 'cypress-on-rails', '~> 1.0'
+end

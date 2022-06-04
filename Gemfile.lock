@@ -91,6 +91,8 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    cypress-on-rails (1.12.1)
+      rack
     debug (1.5.0)
       irb (>= 1.3.6)
       reline (>= 0.2.7)
@@ -242,6 +244,7 @@ DEPENDENCIES
   bootsnap
   bootstrap
   capybara
+  cypress-on-rails (~> 1.0)
   debug
   importmap-rails
   jbuilder

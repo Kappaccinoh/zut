@@ -2,6 +2,7 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
+- Explore Testing options using Cypress or system/test in Rails
 
 # BACKLOG
 1. Minor UI Related Issues
@@ -20,9 +21,9 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Coop vs Competitive mode?
 - Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
 - Scoreboard to keep track of words answered by each participant?
+- Set up Seeds to populate the database on first load
 
 4. Future, External Plans
-- Explore Testing options using Cypress or system/test in Rails
 
 
 # Done/Log
