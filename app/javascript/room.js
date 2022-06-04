@@ -2,5 +2,5 @@
 //= require jquery
 
 $(document).on('ready', function() {
-    console.log("working")
+    console.log("BETTER")
 })

@@ -2,7 +2,6 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-- do I need to precompile each time I change my Javascript Folders?? 
 
 # BACKLOG
 1. Minor UI Related Issues
