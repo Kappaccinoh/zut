@@ -1,3 +1,6 @@
 /* Contains all the self written Javascript Related to Homepage and in Specific Rooms */
+//= require jquery
 
-console.log("working")
+$(document).on('ready', function() {
+    console.log("BETTER")
+})

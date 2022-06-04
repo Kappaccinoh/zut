@@ -50,7 +50,7 @@ gem "sassc-rails"
 # gem "image_processing", "~> 1.2"
 
 # Additional gems 
-# gem "jquery-rails"
+gem "jquery-rails"
 gem "bootstrap"
 
 group :development, :test do
