@@ -3,6 +3,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 # Currently Working on
 
+
 # BACKLOG
 1. Minor UI Related Issues
 - UI for general game interface, layouts, where players will show up as
@@ -14,15 +15,19 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 2. Minor Backend Setup
 - Dont allow for a blank space room to be created
 - Dont allow for a blank space message to be created
+- Create Cypress Tests for existing screens
 
 3. Game Mechanics Setup (Major Backend)
 - Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished
 - Coop vs Competitive mode?
 - Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
 - Scoreboard to keep track of words answered by each participant?
+- Set up Cypress 'seeds' to populate database on testing env
 
 4. Future, External Plans
-- Explore Testing options using Cypress or system/test in Rails
+- Host it on an app for people to access?
+- Convert website to an app?
+- Profile for each player?
 
 
 # Done/Log
@@ -35,6 +40,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Need logic to start a game with minimum 2 players AND flash error message
 - (DONE) Only group creator can start or end a game
 - (DONE) Locked Rooms cannot be left or joined
+- (DONE) Set up Seeds to populate the database on first load
 
 3. Game Mechanics Setup (Major Backend)
 - (DONE) Show which rooms are in progress
@@ -42,8 +48,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Figure out how to do the back and forth toggling between players (start with a button on the room page first)
 - (DONE) Set up Turbo listening for other tags to get real time updates without having to refresh page
 
-
 4. Future External Plans
+- (DONE) Explore Testing options using Cypress
 
 5. Meta Installation
 - (DONE) Installing and Get SASS & Bootstrap Working
