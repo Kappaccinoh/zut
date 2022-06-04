@@ -2,7 +2,7 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-- Explore Testing options using Cypress or system/test in Rails
+- 
 
 # BACKLOG
 1. Minor UI Related Issues
@@ -24,6 +24,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Set up Seeds to populate the database on first load
 
 4. Future, External Plans
+- host it on an app for people to access?
+- convert website to an app?
 
 
 # Done/Log
@@ -45,6 +47,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 
 4. Future External Plans
+- (DONE) Explore Testing options using Cypress
 
 5. Meta Installation
 - (DONE) Installing and Get SASS & Bootstrap Working
