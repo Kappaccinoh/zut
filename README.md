@@ -4,6 +4,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 # Currently Working on
 
 
+
 # BACKLOG
 1. Minor UI Related Issues
 - UI for general game interface, layouts, where players will show up as
@@ -13,8 +14,6 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Player Screen Interface/Game Room Interface
 
 2. Minor Backend Setup
-- Dont allow for a blank space room to be created
-- Dont allow for a blank space message to be created
 - Create Cypress Tests for existing screens
 
 3. Game Mechanics Setup (Major Backend)
@@ -41,6 +40,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Only group creator can start or end a game
 - (DONE) Locked Rooms cannot be left or joined
 - (DONE) Set up Seeds to populate the database on first load
+- (DONE) Dont allow for a blank space room to be created
+- (DONE) Dont allow for a blank space message to be created
 
 3. Game Mechanics Setup (Major Backend)
 - (DONE) Show which rooms are in progress
