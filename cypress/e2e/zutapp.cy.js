@@ -1,17 +1,16 @@
 /// <reference types="cypress" />
 
-describe('Zutapp Test', function() {
-  it('login', function() {
-    cy.visit('http://localhost:5017/signin')
-    cy.get('label').should('have.text', 'Enter your username')
-    cy.get('#session_username').type('Elon')
+describe('Zutapp Test', () => {
+  beforeEach(() => {
+    cy.app('clean')
+    cy.appScenario('basic')
+    cy.login('Elon')
+  })
+
+  // note all these tests will start from the home page
+  it('Creating A New Room Successfully', function() {
+    cy.get('#room_name').type('New Room')
+    cy.get('input').contains('Create Room').click()
+    cy.contains('New Room').should('be.visible')
   })
 })
-
-/*
-it('homepage', function() {
-  cy.visit('http://localhost:5017')
-  cy.get('h2').contains('Users Online')
-  cy.get('div').contains('Elon (you)')
-})
-*/

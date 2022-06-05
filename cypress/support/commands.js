@@ -23,3 +23,13 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username) => {
+    cy.visit('http://localhost:5017/signin')
+    cy.contains('Enter your username').should('be.visible')
+    cy.get('#session_username').type(username)
+    cy.get('input').contains('Sign in').click()
+
+    cy.contains('Users Online').should('be.visible')
+    cy.contains(`${username} (you)`).should('be.visible')
+})

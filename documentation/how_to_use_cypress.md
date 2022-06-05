@@ -1,6 +1,14 @@
 # Guide to Cypress
 https://docs.google.com/document/d/15hThARV33g5dXAgMfjl2eJULqDBqoAsUk3-DeTcaIms/edit
 
+# Tests will fail if they receive a browser error, e.g console log errors
+add the following code to your on-rails.js
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // returning false here prevents Cypress from
+  // failing the test
+  return false
+})
 
 # Installation of backend and how to run basic tests
 https://nebulab.com/blog/cypress-for-rails-developers

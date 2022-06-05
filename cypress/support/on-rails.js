@@ -43,10 +43,11 @@ Cypress.Commands.add('appFixtures', function (options) {
 
 // The next is optional
 // beforeEach(() => {
-//  cy.app('clean') // have a look at cypress/app_commands/clean.rb
+  // cy.app('clean') // have a look at cypress/app_commands/clean.rb
 // });
 
 // comment this out if you do not want to attempt to log additional info on test fail
+/*
 Cypress.on('fail', (err, runnable) => {
   // allow app to generate additional logging data
   Cypress.$.ajax({
@@ -58,3 +59,12 @@ Cypress.on('fail', (err, runnable) => {
 
   throw err;
 });
+*/
+
+// Preventing any browser errors from automatically failing the test
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // returning false here prevents Cypress from
+  // failing the test
+  return false
+})
+
