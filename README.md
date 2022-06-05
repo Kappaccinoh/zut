@@ -1,8 +1,15 @@
 # zut
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
+
 # Currently Working on
-- Create Cypress Tests for existing screens
+3.5 Cypress Related Issues
+- Test Server not having the same controller logic as development, not sure why...
+although tests are already set up (needs further investigation)
+
+
+//
+
 
 # BACKLOG
 1. Minor UI Related Issues
@@ -29,6 +36,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Profile for each player?
 
 
+//
+
 # Done/Log
 2. Minor Backend Setup
 - (DONE) Show which rooms a player has already joined
@@ -49,6 +58,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 4. Future External Plans
 - (DONE) Explore Testing options using Cypress
+- (DONE) Create Cypress Tests for existing screens
 
 5. Meta Installation
 - (DONE) Installing and Get SASS & Bootstrap Working
