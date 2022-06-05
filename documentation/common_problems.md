@@ -27,3 +27,7 @@ e.g (//= require_tree .) causes many problems
 4. do I need to precompile each time I change my Javascript Folders 
 answer: No, just configure (production.rb) as such:
     config.assets.compile = true
+
+5. Accessing Test Console vs Development Console
+rails c
+rails c -e test

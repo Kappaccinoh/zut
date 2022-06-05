@@ -2,7 +2,7 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-
+- Create Cypress Tests for existing screens
 
 # BACKLOG
 1. Minor UI Related Issues
@@ -15,7 +15,6 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 2. Minor Backend Setup
 - Dont allow for a blank space room to be created
 - Dont allow for a blank space message to be created
-- Create Cypress Tests for existing screens
 
 3. Game Mechanics Setup (Major Backend)
 - Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished
