@@ -2,7 +2,21 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
+3. Game Mechanics Setup (Major Backend)
+- Rotate the players each time a message is sent (likely required integration and listening from ActionCable/Websockets)
+    - Have a fixed bag of words e.g flowers, countries etc
+    - checked boolean column
+    - if message sent matches one of the words in the dictionary, update the database
 
+    - PLANNED STRUCTURE
+        - Similar to voting metrics structure
+        - One dedicated Table for each category, first 500/1000 rows is the "template"
+        - When a game is created, add on more rows for that particular table with the corresponding game_id
+            - meaning each time a new game room goes live, another 500/1000 rows are added to that table
+            - and removed after one the game closes
+            - table for that particular game_id is updated true and false when a message is sent
+
+- Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
 
 
 # BACKLOG
@@ -12,21 +26,24 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Clean up interface w Bootstrap/CSS
 - Homepage Tab system to filter (in progress, available, your owned rooms, joined rooms)
 - Player Screen Interface/Game Room Interface
+- Scoreboard to keep track of words answered by each participant?
+
 
 2. Minor Backend Setup
 - Create Cypress Tests for existing screens
 
+
 3. Game Mechanics Setup (Major Backend)
-- Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished
+- Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished (likely will use actioncable and websockets -> need more research)
 - Coop vs Competitive mode?
-- Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
-- Scoreboard to keep track of words answered by each participant?
 - Set up Cypress 'seeds' to populate database on testing env
+
 
 4. Future, External Plans
 - Host it on an app for people to access?
 - Convert website to an app?
 - Profile for each player?
+- Explore ActionCable and Websockets
 
 
 # Done/Log
