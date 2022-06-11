@@ -34,7 +34,7 @@ Messages
 
 DATABASE_Category_Answers (GENERIC STRUCTURE OF CATEGORIES)
 - ID
-- Room_ID
+- Room_ID -> original copies of the answers will have a default value of 1
 - String
 - Boolean
 

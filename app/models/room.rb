@@ -8,9 +8,9 @@ class Room < ApplicationRecord
     # Not dependent: :destroy, because we already manually destroy those table entries
     # -- Answer Tables --
     has_many :famous_foursomes_category_answers
+    has_many :black_and_white_animals_category_answers
     
     has_many :gameturns
-
 
     belongs_to :user, autosave: true
     
