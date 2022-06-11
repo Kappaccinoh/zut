@@ -20,3 +20,5 @@ Room.create(user_id: 2, name: "Pokemon")
 Groupparticipant.create(user_id: 1, room_id: 1)
 Groupparticipant.create(user_id: 2, room_id: 1)
 Groupparticipant.create(user_id: 3, room_id: 1)
+
+# Seeding FamousFoursomesCategoryAnswer

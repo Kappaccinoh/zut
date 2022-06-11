@@ -3,7 +3,7 @@ Documentation for Zutapp
 
 //
 
-28 May 2022
+11 June 2022
 
 User
 - ID
@@ -31,5 +31,11 @@ Messages
 - User_ID
 - Room_ID
 - Text
+
+DATABASE_Category_Answers (GENERIC STRUCTURE OF CATEGORIES)
+- ID
+- Room_ID
+- String
+- Boolean
 
 //

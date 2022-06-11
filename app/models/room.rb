@@ -4,7 +4,14 @@ class Room < ApplicationRecord
     
     has_many :messages, dependent: :destroy
     has_many :groupparticipants, dependent: :destroy
+
+    # Not dependent: :destroy, because we already manually destroy those table entries
+    # -- Answer Tables --
+    has_many :famous_foursomes_category_answers
+    
     has_many :gameturns
+
+
     belongs_to :user, autosave: true
     
     scope :open_rooms, -> { where(is_active: false) }

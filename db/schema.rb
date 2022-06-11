@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_20_133022) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_11_082810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "famous_foursomes_category_answers", force: :cascade do |t|
+    t.bigint "room_id"
+    t.text "answer"
+    t.boolean "been_said", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_famous_foursomes_category_answers_on_room_id"
+  end
 
   create_table "game_turns", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -58,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_20_133022) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "famous_foursomes_category_answers", "rooms"
   add_foreign_key "game_turns", "rooms"
   add_foreign_key "game_turns", "users"
   add_foreign_key "groupparticipants", "rooms"
