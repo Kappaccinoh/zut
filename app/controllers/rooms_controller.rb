@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
     # Joining or leaving a group
     @groupparticipant = Groupparticipant.new
     @is_groupparticipant = Groupparticipant.where(user_id: current_user, room_id: @single_room.id).exists?
-    @is_groupcreator = Room.where(user_id: current_user).exists?
+    @is_groupcreator = Room.where(user_id: current_user, id: params[:id]).exists?
     
     # Showing names of group members
     @groupparticipants = Groupparticipant.where(room_id: @single_room.id)
@@ -104,6 +104,25 @@ class RoomsController < ApplicationController
           room_players: room_player_ids
         )
         
+        # creating the DATABASE_Category_Answers rows, hard coded for now, consider doing it dynamically
+        if params['category'] == "Famous Foursomes"
+          # Hard Coded for now (8 'template' entries), consider doing it dynamically
+          for i in 1..8 do
+            answer = FamousFoursomesCategoryAnswer.find(i).answer
+            FamousFoursomesCategoryAnswer.create(room_id: params['room_id'], answer: answer)
+          end
+        
+        elsif params['category'] == "Black White Animals"
+          # Hard Coded for now (7 'template' entries), consider doing it dynamically
+          for i in 1..7 do
+            answer = BlackAndWhiteAnimalsCategoryAnswer.find(i).answer
+            BlackAndWhiteAnimalsCategoryAnswer.create(room_id: params['room_id'], answer: answer)
+          end
+          
+        else
+
+        end
+        
         redirect_back(fallback_location: root_path)
 
       else # unable to start game
@@ -114,9 +133,21 @@ class RoomsController < ApplicationController
       @room = Room.find(params['id'])
       @room.update(is_active: params['state'])
 
+      # deleting the GameTurn entry
       @gameturn = GameTurn.where(room_id: params['room_id']) # consider just using .find instead
       @gameturn.each do |g| 
         g.destroy
+      end
+
+      # deleting all DATABASE_Category_Answers rows
+      @category_answer_rows = FamousFoursomesCategoryAnswer.where(room_id: params['id']) # consider doing this depending on which category the game was previously
+      @category_answer_rows.each do |c|
+        c.destroy
+      end
+
+      @category_answer_rows = BlackAndWhiteAnimalsCategoryAnswer.where(room: params['id']) # consider doing this depending on which category the game was previously
+      @category_answer_rows.each do |c|
+        c.destroy
       end
 
       redirect_back(fallback_location: root_path)

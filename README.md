@@ -23,6 +23,13 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
             - and removed after one the game closes
             - table for that particular game_id is updated true and false when a message is sent
 
+
+4. Table Notes
+- Backend controller logic is working, but it isnt elegant - largely hardcoded
+    - duplicating the template answers for a particular game
+    - note that room_id: 1 is reserved for templates -> create new game rooms to avoid room_id: 1
+    - ending a game deletes the rows belonging to that game in the Category_Answers Table
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -78,6 +85,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Set up Seeds to populate the database on first load
 - (DONE) Dont allow for a blank space room to be created
 - (DONE) Dont allow for a blank space message to be created
+- (DONE) Fixed small @is_groupcreator bug due to controller logic
 
 3. Game Mechanics Setup (Major Backend)
 - (DONE) Show which rooms are in progress
