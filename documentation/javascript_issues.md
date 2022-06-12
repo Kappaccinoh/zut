@@ -1,3 +1,8 @@
+
+# Getting Bootstrap JS to work
+Bootstrap is JS dependent, meaning 2 things:
+- You are required to load Jquery before loading Bootstrap
+- Include Bootstrap and Jquery in your JS files on the header in sequence as aforementioned
 # Related to installing Jquery and Scss - and getting Javascript to work on development
 
 jiawei@Lim-Jia-Weis-MacBook-Air zutapp % ./bin/importmap json

@@ -1,11 +1,16 @@
     <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Choose A Category</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-        <p>Modal body text goes here.</p>
+        <%= form_with url: room_path(@single_room), id: "room-category-form", method: "patch" do |f| %>
+            <%= f.hidden_field :room_id, :value => @single_room.id %>
+            <%= f.hidden_field :state, :value => true %>
+            <!-- Categories are Hardcoded for now, will require some relation in the future -->
+            <%= f.select(:category, ['Famous Foursomes', 'Black White Animals']) %>
+        <% end %>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button id="room-category-form-button" type="button" class="btn btn-primary">Start Game</button>
     </div>
