@@ -74,12 +74,9 @@
         <% else %>
             <h4>No Participants</h4>
         <% end%>
-
         
     <% end %>
     <hr>
-    <!-- TODO: Simulate Next Player Button, we can hide it and use javascript to .click() it?
-     -->
 
     <%= turbo_stream_from @single_room %>
     <div id="messages">
@@ -88,4 +85,15 @@
     <div class="d-flex justify-content-center">
         <%= render partial: 'layouts/new_message_form' %>
     </div>
+
+    <div id="category-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+            <%= render 'category_modal' %>
+
+            </div>
+        </div>
+    </div>
+
 </div>

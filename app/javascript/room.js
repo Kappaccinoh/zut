@@ -2,5 +2,7 @@
 //= require jquery
 
 $(document).on('ready', function() {
-    console.log("BETTER")
+    console.log("Javascripts Loaded")
+
+    $('#category-modal').modal()
 })
