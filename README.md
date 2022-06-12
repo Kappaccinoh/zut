@@ -3,6 +3,13 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 # Currently Working on
 3. Game Mechanics Setup (Major Backend)
+- Selection of What Category The Room Creator wants to play
+    - Pop up style upon clicking the start game?
+    - Use Bootstrap's Modals
+    - Will need to retrieve all categories available
+
+- New model to relate what categories are available? (Not sure how this works)
+
 - Rotate the players each time a message is sent (likely required integration and listening from ActionCable/Websockets)
     - Have a fixed bag of words e.g flowers, countries etc
     - checked boolean column
@@ -16,7 +23,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
             - and removed after one the game closes
             - table for that particular game_id is updated true and false when a message is sent
 
-- Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # BUGS
@@ -77,6 +84,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Figure out destroy issue with pg's relational database set up (n.b no room dependent: :destroy with GameTurn)
 - (DONE) Figure out how to do the back and forth toggling between players (start with a button on the room page first)
 - (DONE) Set up Turbo listening for other tags to get real time updates without having to refresh page
+- (DONE) Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
 
 4. Future External Plans
 - (DONE) Explore Testing options using Cypress
