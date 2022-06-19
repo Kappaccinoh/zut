@@ -3,7 +3,7 @@ Documentation for Zutapp
 
 //
 
-11 June 2022
+19 June 2022
 
 User
 - ID
@@ -25,8 +25,9 @@ Room (Note that you can't delete a Room if it is currently active)
 - Name
 - User_ID
 - is_active
+- Category (String) // Find a better way to do this via enums/relation
 
-Messages
+Messages // Note Messages for a particular room are all destroyed when it changes from active to not active
 - ID
 - User_ID
 - Room_ID

@@ -1,7 +1,11 @@
 class RoomsController < ApplicationController
   def index
-      @current_user = current_user
-      redirect_to '/signin' unless @current_user
+      if current_user == nil
+        redirect_to '/signin'
+        return
+      else 
+        @current_user = current_user
+      end
       @rooms = Room.all
       @rooms_open = Room.open_rooms
       @rooms_inprogress = Room.inprogress_rooms
@@ -55,7 +59,9 @@ class RoomsController < ApplicationController
 
     @current_player = GameTurn.where(room_id: @single_room.id)
     if @current_player.exists? # when you end the game, GameTurn entry doesnt exist, so @current_player[0] will not exist either // error prevention
-      @current_player = @current_player[0].user.username
+      @current_player = @current_player[0]
+      @current_player_username = @current_player.user.username
+      @current_player_id = @current_player.user_id
     end
 
     render 'room'
@@ -79,7 +85,7 @@ class RoomsController < ApplicationController
     @groupparticipants = @groupparticipants.count
 
     if params['state'] == "true" # meaning request is trying to start the game
-      if @groupparticipants # >= 2
+      if @groupparticipants >= 2
         @room = Room.find(params['room_id'])
         @room.update(is_active: params['state'])
         flash.alert = "Room in Progress"
@@ -106,6 +112,9 @@ class RoomsController < ApplicationController
         
         # creating the DATABASE_Category_Answers rows, hard coded for now, consider doing it dynamically
         if params['category'] == "Famous Foursomes"
+          # Updating the Room's Category Column (Again hardcoded for now)
+          Room.find(params['room_id']).update(category: "Famous Foursomes")
+
           # Hard Coded for now (8 'template' entries), consider doing it dynamically
           for i in 1..8 do
             answer = FamousFoursomesCategoryAnswer.find(i).answer
@@ -113,25 +122,32 @@ class RoomsController < ApplicationController
           end
         
         elsif params['category'] == "Black White Animals"
+          # Updating the Room's Category Column (Again hardcoded for now)
+          Room.find(params['room_id']).update(category: "Black White Animals")
+
           # Hard Coded for now (7 'template' entries), consider doing it dynamically
           for i in 1..7 do
             answer = BlackAndWhiteAnimalsCategoryAnswer.find(i).answer
             BlackAndWhiteAnimalsCategoryAnswer.create(room_id: params['room_id'], answer: answer)
           end
-          
         else
-
         end
-        
         redirect_back(fallback_location: root_path)
-
+      
       else # unable to start game
         flash.alert= "Not enough players"
         redirect_back(fallback_location: root_path)
       end
+    
     else # request is trying to end the game
-      @room = Room.find(params['id'])
+      @room = Room.find(params['room_id'])
       @room.update(is_active: params['state'])
+
+      # deleting all messages
+      message = Message.where(room_id: params['room_id'])
+      message.each do |m|
+        m.delete
+      end
 
       # deleting the GameTurn entry
       @gameturn = GameTurn.where(room_id: params['room_id']) # consider just using .find instead
@@ -140,14 +156,18 @@ class RoomsController < ApplicationController
       end
 
       # deleting all DATABASE_Category_Answers rows
-      @category_answer_rows = FamousFoursomesCategoryAnswer.where(room_id: params['id']) # consider doing this depending on which category the game was previously
-      @category_answer_rows.each do |c|
-        c.destroy
-      end
-
-      @category_answer_rows = BlackAndWhiteAnimalsCategoryAnswer.where(room: params['id']) # consider doing this depending on which category the game was previously
-      @category_answer_rows.each do |c|
-        c.destroy
+      category = Room.find(params['room_id']).category
+      if category == "Famous Foursomes"
+        @category_answer_rows = FamousFoursomesCategoryAnswer.where(room_id: params['id']) # consider doing this depending on which category the game was previously
+        @category_answer_rows.each do |c|
+          c.destroy
+        end
+      elsif category == "Black White Animals"
+        @category_answer_rows = BlackAndWhiteAnimalsCategoryAnswer.where(room: params['id']) # consider doing this depending on which category the game was previously
+        @category_answer_rows.each do |c|
+          c.destroy
+        end
+      else
       end
 
       redirect_back(fallback_location: root_path)

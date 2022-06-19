@@ -23,6 +23,7 @@ puts "Seeding GroupParticipants..."
 Groupparticipant.find_or_create_by(user_id: 1, room_id: 1)
 Groupparticipant.find_or_create_by(user_id: 2, room_id: 1)
 Groupparticipant.find_or_create_by(user_id: 3, room_id: 1)
+Groupparticipant.find_or_create_by(user_id: 1, room_id: 2)
 
 # Seeding FamousFoursomesCategoryAnswer
 puts "Seeding FamousFoursomesCategoryAnswer..."

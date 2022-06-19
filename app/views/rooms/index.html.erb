@@ -46,7 +46,7 @@
         <ul>
             <% @joined_rooms.each do |j| %>
                 <% if j.is_active %>
-                    <li><%= "#{j.name} (In Progress)" %></li>
+                    <li><%= link_to "#{ j.name }", room_path(j) %> (Join Now)</li>
                 <% else %>
                     <li><%= link_to "#{ j.name }", room_path(j) %></li>
                 <% end %>
@@ -73,7 +73,7 @@
     <h2>Rooms Currently In Progress</h2>
     <ul>
         <% @rooms_inprogress.each do |r| %>
-            <li><%= r.name %></li>
+            <li><%= link_to "#{ r.name }", room_path(r) %></li>
         <% end %>
     </ul>
 

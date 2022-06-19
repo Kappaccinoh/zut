@@ -4,6 +4,7 @@ class CreateRooms < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.string :name
       t.boolean :is_active, :default => false
+      t.string :category
 
       t.timestamps
     end

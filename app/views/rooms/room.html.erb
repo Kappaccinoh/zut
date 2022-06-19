@@ -30,7 +30,7 @@
                 <h3>Created by: <%= @single_room.user.username %></h3>
 
                 <!-- just temporary placement, will probably move to the bottom of the page once UI is in -->
-                <% if @is_groupcreator && @single_room.is_active? && @only_one_groupparticipant %>
+                <% if @is_groupcreator && @single_room.is_active? && !@only_one_groupparticipant %>
                     <%= form_with url: gameturn_path, method: "patch" do |f| %>
                         <%= f.hidden_field :room_id, :value => @single_room.id %>
                         <%= f.submit 'Next Player' %>
@@ -53,8 +53,8 @@
                     <%= render partial: 'layouts/join_room_form' %>
                 <% end %>
             <% else %>
-                <h4>Current Player: <%= @current_player %></h4>
-                <h4>Room in Progress</h4>
+                <h4>Current Player: <%= @current_player_username %></h4>
+                <h4>Category: <%= @single_room.category %></h4>
             <% end %>
         <% end %>
         
@@ -80,7 +80,7 @@
     <div id="messages">
         <%= render @messages %>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center <%= (current_user.id == @current_player_id) ? "" : "d-none" %>">
         <%= render partial: 'layouts/new_message_form' %>
     </div>
 
