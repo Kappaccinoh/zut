@@ -31,7 +31,7 @@
 
                 <!-- just temporary placement, will probably move to the bottom of the page once UI is in -->
                 <% if @is_groupcreator && @single_room.is_active? && !@only_one_groupparticipant %>
-                    <%= form_with url: gameturn_path, method: "patch" do |f| %>
+                    <%= form_with url: gameturn_path, method: 'patch' do |f| %>
                         <%= f.hidden_field :room_id, :value => @single_room.id %>
                         <%= f.submit 'Next Player' %>
                     <% end %>
@@ -41,7 +41,7 @@
 
         <hr>
         <% if @is_groupcreator && @single_room.is_active == false %>
-            <%= form_with url: room_path(@single_room), method: "delete" do |f| %>
+            <%= form_with url: room_path(@single_room), method: 'delete' do |f| %>
                 <%= f.hidden_field :id, :value => @single_room.id %>
                 <%= f.submit 'delete group' %>
             <% end %>

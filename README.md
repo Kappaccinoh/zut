@@ -2,35 +2,7 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-3. Game Mechanics Setup (Major Backend)
-- Rotate the players each time a message is sent (likely required integration and listening from ActionCable/Websockets)
-    - (DONE) Have a fixed bag of words e.g flowers, countries etc
-    - (DONE) checked boolean column
-    - (DONE) if message sent matches one of the words in the dictionary, update the database
-
-    - (DONE) PLANNED STRUCTURE
-        - Similar to voting metrics structure
-        - One dedicated Table for each category, first 500/1000 rows is the "template"
-        - When a game is created, add on more rows for that particular table with the corresponding game_id
-            - meaning each time a new game room goes live, another 500/1000 rows are added to that table
-            - and removed after one the game closes
-            - table for that particular game_id is updated true and false when a message is sent
-
-    - (TODO) Update the GameTurn model if a correct answer is sent
-
-
-4. Table Notes
-- Backend controller logic is working, but it isnt elegant - largely hardcoded
-    - duplicating the template answers for a particular game
-    - note that room_id: 1 is reserved for templates -> create new game rooms to avoid room_id: 1
-    - ending a game deletes the rows belonging to that game in the Category_Answers Table
-18 June
-- Striking off logic for a said word and handling correct/wrong/already said words is done
-- Message Form will show if the current gameturn player matches the player's id
-- TODO: trigger the gameturn update method when a correct answer is submitted
-    - in the past it was written via a button, not sure whether I should do this from the front end
-        - E.g if message is valid then .click()
-    - or via the backend in the controller?
+- Coop vs Competitive mode?
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +41,6 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 3. Game Mechanics Setup (Major Backend)
 - Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished (likely will use actioncable and websockets -> need more research)
-- Coop vs Competitive mode?
 - Set up Cypress 'seeds' to populate database on testing env
 - New model to relate what categories are available? (Not sure how this works)
 
@@ -104,6 +75,19 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Set up Databases worth of words for each category (pokemon, famous people, famous/historic places, animals)
 - (DONE) Selection of What Category The Room Creator wants to play
     - Will need to retrieve all categories available
+- (DONE) Rotate the players each time a message is sent (likely required integration and listening from ActionCable/Websockets)
+    - Have a fixed bag of words e.g flowers, countries etc
+    - checked boolean column
+    - if message sent matches one of the words in the dictionary, update the database
+    - PLANNED STRUCTURE
+        - Similar to voting metrics structure
+        - One dedicated Table for each category, first 500/1000 rows is the "template"
+        - When a game is created, add on more rows for that particular table with the corresponding game_id
+            - meaning each time a new game room goes live, another 500/1000 rows are added to that table
+            - and removed after one the game closes
+            - table for that particular game_id is updated true and false when a message is sent
+    - Update the GameTurn model if a correct answer is sent
+
 
 4. Future External Plans
 - (DONE) Explore Testing options using Cypress

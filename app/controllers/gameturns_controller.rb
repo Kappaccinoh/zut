@@ -1,6 +1,6 @@
 class GameturnsController < ApplicationController
     def update
-        @game_turn = GameTurn.where(room: params['room_id'])
+        @game_turn = GameTurn.where(room: params[:room_id])
         player_ids = @game_turn[0].room_players
         player_ids_length = player_ids.length
 
@@ -18,4 +18,5 @@ class GameturnsController < ApplicationController
 
         redirect_back(fallback_location: root_path)
     end
+
 end

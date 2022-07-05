@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
 
+  get '/gameturns/:id', to: 'gameturns#update' # hypothesis is that PATCH needs to stem from GET
+
   resources :rooms do
     resources :messages
   end
