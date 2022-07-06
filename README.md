@@ -2,7 +2,15 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-- Coop vs Competitive mode?
+1. Minor UI Related Issues
+- Interface for word clearance, strikethrough? animated sliding on the textarea once a word is cleared?
+
+3. Major Backend
+- Coop Mode
+
+Table Notes
+- (TODO) Coop Mode
+    - Add a column for GameTurn, game_mode, either cooperative or competative, read this flag in messages_controller
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -22,7 +30,6 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 # BACKLOG
 1. Minor UI Related Issues
 - UI for general game interface, layouts, where players will show up as
-- Interface for word clearance, strikethrough? animated sliding on the textarea once a word is cleared?
 - Clean up interface w Bootstrap/CSS
 - Homepage Tab system to filter (in progress, available, your owned rooms, joined rooms)
 - Player Screen Interface/Game Room Interface
@@ -87,6 +94,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
             - and removed after one the game closes
             - table for that particular game_id is updated true and false when a message is sent
     - Update the GameTurn model if a correct answer is sent
+- (DONE) Competitive Mode
+    - Players Rotate and are against each other
 
 
 4. Future External Plans
