@@ -1,5 +1,5 @@
     <div class="modal-header">
-        <h5 class="modal-title">Choose A Category</h5>
+        <h5 class="modal-title">Game Options</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
@@ -8,6 +8,7 @@
             <%= f.hidden_field :state, :value => true %>
             <!-- Categories are Hardcoded for now, will require some relation in the future -->
             <%= f.select(:category, ['Famous Foursomes', 'Black White Animals']) %>
+            <%= f.select(:game_mode, ['Competitive', 'Cooperative']) %>
         <% end %>
     </div>
     <div class="modal-footer">

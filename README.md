@@ -5,13 +5,6 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 1. Minor UI Related Issues
 - Interface for word clearance, strikethrough? animated sliding on the textarea once a word is cleared?
 
-3. Major Backend
-- Coop Mode
-
-Table Notes
-- (TODO) Coop Mode
-    - Add a column for GameTurn, game_mode, either cooperative or competative, read this flag in messages_controller
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -96,6 +89,7 @@ Table Notes
     - Update the GameTurn model if a correct answer is sent
 - (DONE) Competitive Mode
     - Players Rotate and are against each other
+- (DONE) Coop Mode
 
 
 4. Future External Plans

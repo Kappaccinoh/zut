@@ -6,24 +6,27 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# Seeding Users
-puts "Seeding Users..."
-User.find_or_create_by(username: "Elon")
-User.find_or_create_by(username: "Drake")
-User.find_or_create_by(username: "Trump")
+# Seeding Users // look at how to prevent the error from being thrown in the future, likely it is because of turbo
+# puts "Seeding Users..."
+# User.find_or_create_by(username: "Elon")
+# User.find_or_create_by(username: "Drake")
+# User.find_or_create_by(username: "Trump")
 
 # Seeding Rooms
 puts "Seeding Rooms..."
+Room.find_or_create_by(user_id: 1, name: "PLACE HOLDER")
 Room.find_or_create_by(user_id: 1, name: "People")
 Room.find_or_create_by(user_id: 1, name: "Places")
-Room.find_or_create_by(user_id: 2, name: "Pokemon")
+Room.find_or_create_by(user_id: 3, name: "Pokemon")
 
 # Seeding GroupParticipants
 puts "Seeding GroupParticipants..."
-Groupparticipant.find_or_create_by(user_id: 1, room_id: 1)
-Groupparticipant.find_or_create_by(user_id: 2, room_id: 1)
-Groupparticipant.find_or_create_by(user_id: 3, room_id: 1)
 Groupparticipant.find_or_create_by(user_id: 1, room_id: 2)
+Groupparticipant.find_or_create_by(user_id: 2, room_id: 2)
+Groupparticipant.find_or_create_by(user_id: 1, room_id: 3)
+Groupparticipant.find_or_create_by(user_id: 2, room_id: 3)
+Groupparticipant.find_or_create_by(user_id: 3, room_id: 3)
+
 
 # Seeding FamousFoursomesCategoryAnswer
 puts "Seeding FamousFoursomesCategoryAnswer..."

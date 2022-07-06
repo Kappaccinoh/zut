@@ -64,6 +64,14 @@ class RoomsController < ApplicationController
       @current_player_id = @current_player.user_id
     end
 
+    
+    game_mode = @single_room.game_mode
+    if game_mode == "comp"
+      @is_comp = true
+    elsif game_mode == "coop"
+      @is_coop = true
+    end
+
     render 'room'
   end
 
@@ -132,6 +140,14 @@ class RoomsController < ApplicationController
           end
         else
         end
+
+        # populating the game_mode column with a string, again hardcoded for now
+        if params['game_mode'] == "Competitive"
+          Room.find(params['room_id']).update(game_mode: "comp")
+        elsif params['game_mode'] == "Cooperative"
+          Room.find(params['room_id']).update(game_mode: "coop")
+        end
+
         redirect_back(fallback_location: root_path)
       
       else # unable to start game
@@ -142,6 +158,8 @@ class RoomsController < ApplicationController
     else # request is trying to end the game
       @room = Room.find(params['room_id'])
       @room.update(is_active: params['state'])
+      @room.update(game_mode: "")
+      @room.update(category: "")
 
       # deleting all messages
       message = Message.where(room_id: params['room_id'])
