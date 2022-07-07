@@ -2,8 +2,11 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-1. Minor UI Related Issues
-- Interface for word clearance, strikethrough? animated sliding on the textarea once a word is cleared?
+2. Minor Backend Setup
+- Code Cleanup
+
+Table Notes
+- Make the category relation table
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -27,6 +30,9 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Homepage Tab system to filter (in progress, available, your owned rooms, joined rooms)
 - Player Screen Interface/Game Room Interface
 - Scoreboard to keep track of words answered by each participant?
+- Interface for word clearance, strikethrough? animated sliding on the textarea once a word is cleared?
+    - colors for showing when a new word has been updated?
+    - probably need turbo for showing new word on strikethrough list, try reusing the messages div
 
 
 2. Minor Backend Setup
