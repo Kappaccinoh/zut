@@ -7,10 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Seeding Users // look at how to prevent the error from being thrown in the future, likely it is because of turbo
-# puts "Seeding Users..."
-# User.find_or_create_by(username: "Elon")
-# User.find_or_create_by(username: "Drake")
-# User.find_or_create_by(username: "Trump")
+puts "Seeding Users..."
+User.find_or_create_by(username: "Elon")
+User.find_or_create_by(username: "Drake")
+User.find_or_create_by(username: "Trump")
 
 # Seeding Rooms
 puts "Seeding Rooms..."

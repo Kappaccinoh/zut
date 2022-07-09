@@ -5,23 +5,11 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 2. Minor Backend Setup
 - Code Cleanup
 
-Table Notes
-- Make the category relation table
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # BUGS
-- Seeding Database Bug, likely caused by turbo trying to render a template each time a new user is created into the database
-    - :002 > User.create(username: "Drake")
-    TRANSACTION (0.2ms)  BEGIN
-    User Exists? (15.7ms)  SELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2  [["username", "Drake"], ["LIMIT", 1]]
-    User Create (40.8ms)  INSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["username", "Drake"], ["created_at", "2022-06-11 09:29:34.542634"], ["updated_at", "2022-06-11 09:29:34.542634"]]
-    TRANSACTION (3.9ms)  COMMIT                          
-    Rendered users/_user.html.erb (Duration: 5.9ms | Allocations: 2697)
-    /Users/jiawei/.rvm/gems/ruby-3.1.0/gems/actionpack-7.0.2.4/lib/action_dispatch/journey/formatter.rb:44:in `path': No route matches {} (ActionView::Template::Error)
-    /Users/jiawei/.rvm/gems/ruby-3.1.0/gems/actionpack-7.0.2.4/lib/action_dispatch/journey/formatter.rb:44:in `path': No route matches {} (ActionController::UrlGenerationError)
-
 
 # BACKLOG
 1. Minor UI Related Issues
@@ -47,6 +35,7 @@ Table Notes
 
 3. Game Mechanics Setup (Major Backend)
 - Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished (likely will use actioncable and websockets -> need more research)
+- How to source for databases full of words?
 - Set up Cypress 'seeds' to populate database on testing env
 - New model to relate what categories are available? (Not sure how this works)
 
@@ -59,6 +48,9 @@ Table Notes
 
 
 # Done/Log
+0. Bugs
+- (DONE) Seeding Database Bug
+
 2. Minor Backend Setup
 - (DONE) Show which rooms a player has already joined
 - (DONE) Owner should be able to delete each game room
