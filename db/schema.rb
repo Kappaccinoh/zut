@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_11_090515) do
     t.boolean "is_active", default: false
     t.string "category"
     t.string "game_mode"
+    t.integer "timer_interval"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"

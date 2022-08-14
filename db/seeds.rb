@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# Seeding Users // look at how to prevent the error from being thrown in the future, likely it is because of turbo
+# Seeding Users
 puts "Seeding Users..."
 User.find_or_create_by(username: "Elon")
 User.find_or_create_by(username: "Drake")

@@ -8,7 +8,7 @@
                     <%= msg %>
                 </div>
             <% end %>
-            
+
             <% if @single_room.user_id == @current_user.id %>
                 <% if @single_room.is_active == false %>
                     <button id="category-modal-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#category-modal" type="button">
@@ -58,9 +58,12 @@
                     <h4>Current Player: <%= @current_player_username %></h4>
                 <% end %>
                 <h4>Category: <%= @single_room.category %></h4>
+                <h4>Timer Interval: <span id="timer-interval"><%= @timer_interval%></span> seconds</h4>
             <% end %>
         <% end %>
-        
+
+        <br>
+
         <h3><u>Group Participants</u></h3>
         <% if @groupparticipants.exists? %>
             <ul>

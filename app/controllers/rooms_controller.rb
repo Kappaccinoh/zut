@@ -72,6 +72,8 @@ class RoomsController < ApplicationController
       @is_coop = true
     end
 
+    @timer_interval = @single_room.timer_interval
+
     render 'room'
   end
 
@@ -146,6 +148,17 @@ class RoomsController < ApplicationController
           Room.find(params['room_id']).update(game_mode: "comp")
         elsif params['game_mode'] == "Cooperative"
           Room.find(params['room_id']).update(game_mode: "coop")
+        end
+
+        # populating the timer_interval column with an integer
+        if params['timer_interval'] == '5 seconds'
+          Room.find(params['room_id']).update(timer_interval: 5)
+        elsif params['timer_interval'] == '10 seconds'
+          Room.find(params['room_id']).update(timer_interval: 10)
+        elsif params['timer_interval'] == '15 seconds'
+          Room.find(params['room_id']).update(timer_interval: 15)
+        elsif params['timer_interval'] == '30 seconds'
+          Room.find(params['room_id']).update(timer_interval: 30)
         end
 
         redirect_back(fallback_location: root_path)

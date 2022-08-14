@@ -6,6 +6,7 @@ class CreateRooms < ActiveRecord::Migration[7.0]
       t.boolean :is_active, :default => false
       t.string :category
       t.string :game_mode
+      t.integer :timer_interval
 
       t.timestamps
     end

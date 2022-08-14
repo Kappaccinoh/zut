@@ -8,7 +8,9 @@ $(document).on('ready', function() {
         $('#room-category-form').submit()
     });
 
-    startTimer(30); // hardcoded for now, look into making this value dynamic -> also hardcoded in html page on initial load
+    var timer_interval = parseInt($('#timer-interval')[0].innerHTML)
+    console.log(timer_interval)
+    startTimer(timer_interval); // hardcoded for now, look into making this value dynamic -> also hardcoded in html page on initial load
 })
 
 // controls the in game timer

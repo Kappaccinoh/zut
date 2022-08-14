@@ -27,6 +27,7 @@ Room (Note that you can't delete a Room if it is currently active)
 - is_active
 - Category (String) // Find a better way to do this via enums/relation
 - game_mode (String)
+- timer_interval (integer)
 
 Messages // Note Messages for a particular room are all destroyed when it changes from active to not active
 - ID
