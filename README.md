@@ -3,7 +3,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 
 # Currently Working on
 2. Minor Backend Setup
-- Code Cleanup
+- Timer Running System when it is a player's turn
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -31,6 +31,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Room smoothen UI/UX 
     - Pop up style upon clicking the start game?
     - Use Bootstrap's Modals
+- Timer Running System when it is a player's turn
+    - Automatically clicks next player once the timer runs to 0
 
 
 3. Game Mechanics Setup (Major Backend)

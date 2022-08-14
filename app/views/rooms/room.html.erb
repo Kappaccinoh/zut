@@ -15,10 +15,11 @@
                         Choose Category
                     </button>
                 <% else %>
+                    <h3>Timer <span id='time'>00:30</span></h3>
                     <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
                         <%= f.hidden_field :room_id, :value => @single_room.id %>
                         <%= f.hidden_field :state, :value => false %>
-                        <%= f.submit 'End Game' %>
+                        <%= f.submit 'End Game', id: 'end-game-button' %>
                     <% end %>
                 <% end %>
             <% end %>
@@ -33,7 +34,7 @@
                 <% if @is_groupcreator && @single_room.is_active? && !@only_one_groupparticipant %>
                     <%= form_with url: gameturn_path, method: 'patch' do |f| %>
                         <%= f.hidden_field :room_id, :value => @single_room.id %>
-                        <%= f.submit 'Next Player' %>
+                        <%= f.submit 'Next Player', id: 'next-player-button' %>
                     <% end %>
                 <% end %>
 
