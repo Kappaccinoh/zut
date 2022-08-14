@@ -15,7 +15,7 @@
                         Choose Category
                     </button>
                 <% else %>
-                    <h3>Timer <span id='time'>00:30</span></h3>
+                    <h3>Timer <span id='time'>00:00</span></h3>
                     <%= form_with url: room_path(@single_room), method: "patch" do |f| %>
                         <%= f.hidden_field :room_id, :value => @single_room.id %>
                         <%= f.hidden_field :state, :value => false %>
@@ -27,20 +27,19 @@
         </div>
 
         <h1><%= @single_room.name %></h1>
-            <div class="d-flex justify-content-between">
-                <h3>Created by: <%= @single_room.user.username %></h3>
-
-                <!-- just temporary placement, will probably move to the bottom of the page once UI is in -->
-                <% if @is_groupcreator && @single_room.is_active? && !@only_one_groupparticipant %>
-                    <%= form_with url: gameturn_path, method: 'patch' do |f| %>
-                        <%= f.hidden_field :room_id, :value => @single_room.id %>
-                        <%= f.submit 'Next Player', id: 'next-player-button' %>
-                    <% end %>
+        <div class="d-flex justify-content-between">
+            <h3>Created by: <%= @single_room.user.username %></h3>
+            
+            <% if @is_groupcreator && @single_room.is_active? && !@only_one_groupparticipant && @is_comp %>
+                <%= form_with url: gameturn_path, method: 'patch' do |f| %>
+                    <%= f.hidden_field :room_id, :value => @single_room.id %>
+                    <%= f.submit 'Next Player', id: 'next-player-button' %>
                 <% end %>
-
-            </div>
+            <% end %>
+        </div>
 
         <hr>
+
         <% if @is_groupcreator && @single_room.is_active == false %>
             <%= form_with url: room_path(@single_room), method: 'delete' do |f| %>
                 <%= f.hidden_field :id, :value => @single_room.id %>
@@ -80,6 +79,7 @@
         <% end%>
     
     <% end %>
+
     <hr>
 
     <%= turbo_stream_from @single_room %>
@@ -106,3 +106,45 @@
     </div>
 
 </div>
+
+<script>
+if (document.querySelector('#timer-interval') != null) {
+    var timer_interval = parseInt(document.querySelector('#timer-interval').innerHTML);
+    startTimer(timer_interval); // hardcoded for now, look into making this value dynamic -> also hardcoded in html page on initial load
+};
+
+if (document.querySelector('#next-player-button') != null) {
+    var next_player_button = document.querySelector('#next-player-button');
+    next_player_button.onclick = function() {
+        clearInterval(interval_instance);
+    };
+};
+
+// controls the in game timer
+function timerMechanism(duration, display) {
+    var timer = duration, minutes, seconds;
+    interval_instance = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            if (document.querySelector('#end-game-button') != null) {
+                var end_game_button = document.querySelector('#end-game-button');
+                end_game_button.click();
+            };
+        };
+    }, 1000);
+}
+
+function startTimer(time) {
+    if (document.querySelector('#time') != null) {
+        var display = document.querySelector('#time');
+        timerMechanism(time, display);
+    };
+}
+</script>

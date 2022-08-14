@@ -2,14 +2,11 @@
 From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sophia made into a webapp
 
 # Currently Working on
-2. Minor Backend Setup
-- Timer Running System when it is a player's turn
-
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 # BUGS
+- Category answers not deleting -> multiple rows are being created which causes bugs when a player enters a word that hasn't been said but responds as if it has already been since the table rows are not accurate
 
 # BACKLOG
 1. Minor UI Related Issues
@@ -31,12 +28,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - Room smoothen UI/UX 
     - Pop up style upon clicking the start game?
     - Use Bootstrap's Modals
-- Timer Running System when it is a player's turn
-    - Automatically clicks next player once the timer runs to 0
-
 
 3. Game Mechanics Setup (Major Backend)
-- Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished (likely will use actioncable and websockets -> need more research)
 - How to source for databases full of words?
 - Set up Cypress 'seeds' to populate database on testing env
 - New model to relate what categories are available? (Not sure how this works)
@@ -52,6 +45,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 # Done/Log
 0. Bugs
 - (DONE) Seeding Database Bug
+- (DONE) Timer not starting when next player is clicked for competitive mode
 
 2. Minor Backend Setup
 - (DONE) Show which rooms a player has already joined
@@ -66,6 +60,8 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Dont allow for a blank space room to be created
 - (DONE) Dont allow for a blank space message to be created
 - (DONE) Fixed small @is_groupcreator bug due to controller logic
+- (DONE) Timer Running System when it is a player's turn
+    - Automatically clicks end game once the timer runs to 0 for comp and coop modes
 
 3. Game Mechanics Setup (Major Backend)
 - (DONE) Show which rooms are in progress
@@ -90,6 +86,7 @@ From "A Gentleman in Moscow", the game of zut played by Alexander Rostov and Sop
 - (DONE) Competitive Mode
     - Players Rotate and are against each other
 - (DONE) Coop Mode
+- (DONE) Set up and Display Timer function, lock the room once the timer has started, unlock the room after the timer has finished
 
 
 4. Future External Plans

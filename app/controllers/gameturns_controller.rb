@@ -16,7 +16,7 @@ class GameturnsController < ApplicationController
 
         @game_turn[0].update(user_id: new_user_id)
 
-        redirect_back(fallback_location: root_path)
+        redirect_to controller: :rooms, action: :show, id: Room.find(params[:room_id])
     end
 
 end

@@ -119,6 +119,21 @@ class RoomsController < ApplicationController
           room_id: params['room_id'],
           room_players: room_player_ids
         )
+
+        # deleting all DATABASE_Category_Answers rows
+        category = Room.find(params['room_id']).category
+        if category == "Famous Foursomes"
+          @category_answer_rows = FamousFoursomesCategoryAnswer.where(room_id: params['id']) # consider doing this depending on which category the game was previously
+          @category_answer_rows.each do |c|
+            c.destroy
+          end
+        elsif category == "Black White Animals"
+          @category_answer_rows = BlackAndWhiteAnimalsCategoryAnswer.where(room: params['id']) # consider doing this depending on which category the game was previously
+          @category_answer_rows.each do |c|
+            c.destroy
+          end
+        else
+        end
         
         # creating the DATABASE_Category_Answers rows, hard coded for now, consider doing it dynamically
         if params['category'] == "Famous Foursomes"
